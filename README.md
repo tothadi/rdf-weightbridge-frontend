@@ -1,27 +1,20 @@
-# Frontend
+# RDF Weightbridge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+In this repo you can find a small project for displaying data emitted by a weightbridge at the entrance of 3B Hungária RDF Facility in Zalaegerszeg. The purpose of this small program is to show real-time weight data of incoming and outgoing garbage trucks and to store the weights with timestamp.
+Two kiosks were planted at the entrance of the facility to let the drivers register their inbound and outbound weights for automatic data handling. The program running on these kiosk made by a 3rd party company is not foolproof enough which leads to a lot of manual data handling. Another problem with the system is the claim of the facility manager to see the real-time weights in the control room.
 
-## Development server
+### Technical background
+The weightbridge communicates through RS232 with an ATC-1000 RS232/LAN converter. As the program running on the kiosks also communicates with the weightbridge and has a higher priority I had to find a way to reserve the connection for short periods. In scale.js my server-app connects for 1 sec to collect weight data from the TCP stream than the connection is closed for 1 sec to allow the kiosks connect to the weightbridge.
+In app.js the server emits the weight to the client utilizing socket.io so the data is displayed in the browser. If this data is not 0 (there's a truck on the weightbridge) then the weight values are collected in an array until the truck leaves the wightbridge. When the weight is 0 again the mode of the collected values is saved to a database with a timestamp. Meanwhile the current daily weigths are fetched from the dbase and are emitted to the client with socket.io and displayed in the browser in a table with the timestamps.
+The table can be switched from the current daily weights to weights of a date given by the user.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Built with
+Angular, Node, Express, MongoDb, html, css, javascript, jquery, socket.io, net.socket, visual studio code, Angular CLI, Npm
 
-## Code scaffolding
+#### Link
+Running [app]
+My [introduction] page
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   [app]: <http://kozpont.zkn.hu>
+   [introduction]: <https://www.tothadi.hu>
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

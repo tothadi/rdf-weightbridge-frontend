@@ -1,0 +1,49 @@
+<h1>RDF üzem mérleg</h1>
+<div id="data">
+    <div id="weight">
+        <p>{{weight}} kg</p>
+    </div>
+</div>
+<div id="tables">
+    <p id="caption">Aktív mentés 2020 február 5-től.</p>
+    <div id="toggles">
+        <a id="todayBtn" (click)="toggleToday()" [ngClass]="{'active': showToday}">Mai súlyok</a>
+        <a id="byDateBtn" (click)="toggleToday()" [ngClass]="{'active': !showToday}">Dátum szerint</a>
+    </div>
+    <div *ngIf="!showToday" id="byDate">
+        <form (submit)="submit()">
+            <input name="dateInput" [(ngModel)]="dateInput" id="filterDate" placeholder="2020.01.01">
+            <button>szűrés</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <td>Dátum</td>
+                    <td>Súly</td>
+                </tr>
+            </thead>
+            <tbody id="byDateWeights">
+                <tr *ngFor="let dateWeight of dateWeights">
+                    <td>{{dateWeight?.date}}</td>
+                    <td>{{dateWeight?.weight}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="showToday" id="today">
+        <table>
+            <thead>
+                <tr>
+                    <td>Dátum</td>
+                    <td>Súly</td>
+                </tr>
+            </thead>
+            <tbody id="todayWeights">
+                <tr *ngFor="let todayWeight of todayWeights">
+                    <td>{{todayWeight?.date}}</td>
+                    <td>{{todayWeight?.weight}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

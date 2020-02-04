@@ -1,0 +1,136 @@
+h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5%;
+  font-size: 6vh;
+  margin-bottom: 5%;
+  height: 15%;
+}
+
+#data {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 15%;
+  justify-content: space-around;
+  background-color: green;
+  font-size: 8vh;
+  margin-bottom: 2vh;
+}
+
+#tables {
+  height: 58vh;
+}
+
+#caption {
+  height: 4vh;
+  font-size: 2vh;
+  padding: 1vh;
+  background-color: green;
+  margin-bottom: 2vh;
+}
+
+#toggles {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+a {
+  height: 5vh;
+  width: 100%;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  font-size: 3vh;
+  text-align: center;
+  background-color: rgb(2, 29, 2);
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: green;
+}
+
+#today {
+  display: flex;
+}
+
+#byDate {
+  display: flex;
+  flex-direction: column;
+}
+
+.active {
+  background-color: green;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  height: 6vh;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+
+input {
+  height: 4vh;
+  font-size: 2.5vh;
+}
+
+input::placeholder {
+  color: lightgray;
+}
+
+button {
+  height: 4vh;
+  font-size: 2.5vh;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+thead {
+  height: 4vh;
+  background-color: green;
+  display: table;
+  font-size: 2.2vh;
+  font-weight: bold;
+}
+
+tbody {
+  display: block;
+  flex-direction: column;
+  background-color: rgb(2, 29, 2);
+  height: 33vh;
+  overflow-y: scroll;
+}
+
+#today tbody {
+  height: 39vh;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  /* even columns width , fix width of table too*/
+}
+
+tr {
+  font-size: 2vh;
+  height: calc(3vh + 1px);
+  border-top: 1px solid green;
+  border-collapse: collapse;
+}
+
+td {
+  width: 50%;
+}
+
