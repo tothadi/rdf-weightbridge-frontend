@@ -20,7 +20,8 @@ h1 {
 }
 
 #tables {
-  height: 62vh;
+  height: 61vh;
+  margin-bottom: 2vh;
 }
 
 #caption {
@@ -108,12 +109,12 @@ tbody {
   display: block;
   flex-direction: column;
   background-color: rgb(2, 29, 2);
-  height: 41vh;
+  height: 40vh;
   overflow-y: scroll;
 }
 
 #today tbody {
-  height: 47vh;
+  height: 46vh;
 }
 
 thead, tbody tr {
@@ -138,8 +139,6 @@ footer {
   width: 70%;
   max-width: 750px;
   height: 3.5vh;
-  position: fixed;
-  bottom: 1%;
   align-self: center;
   display: flex;
   justify-content: center;
