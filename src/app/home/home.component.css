@@ -20,7 +20,7 @@ h1 {
 }
 
 #tables {
-  height: 63vh;
+  height: 62vh;
 }
 
 #caption {
@@ -108,12 +108,12 @@ tbody {
   display: block;
   flex-direction: column;
   background-color: rgb(2, 29, 2);
-  height: 42vh;
+  height: 41vh;
   overflow-y: scroll;
 }
 
 #today tbody {
-  height: 48vh;
+  height: 47vh;
 }
 
 thead, tbody tr {
