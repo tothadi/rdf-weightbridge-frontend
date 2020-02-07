@@ -3,31 +3,31 @@ h1 {
   flex-direction: column;
   justify-content: center;
   margin-top: 5%;
-  font-size: 6vh;
+  font-size: 4.5vh;
   margin-bottom: 5%;
-  height: 15%;
+  height: 10%;
 }
 
 #data {
   display: flex;
   flex-flow: column;
   width: 100%;
-  height: 15%;
+  height: 10%;
   justify-content: space-around;
   background-color: green;
-  font-size: 8vh;
+  font-size: 6vh;
   margin-bottom: 2vh;
 }
 
 #tables {
-  height: 58vh;
+  height: 63vh;
 }
 
 #caption {
   height: 4vh;
   font-size: 2vh;
   padding: 1vh;
-  background-color: green;
+  background-color: rgb(2, 29, 2);
   margin-bottom: 2vh;
 }
 
@@ -108,12 +108,12 @@ tbody {
   display: block;
   flex-direction: column;
   background-color: rgb(2, 29, 2);
-  height: 33vh;
+  height: 42vh;
   overflow-y: scroll;
 }
 
 #today tbody {
-  height: 39vh;
+  height: 48vh;
 }
 
 thead, tbody tr {
@@ -134,3 +134,52 @@ td {
   width: 50%;
 }
 
+footer {
+  width: 70%;
+  max-width: 750px;
+  height: 3.5vh;
+  position: fixed;
+  bottom: 1%;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(2, 29, 2);
+}
+
+#copy-right {
+  line-height: 1.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(190, 190, 190);
+}
+
+#copy-right p {
+  text-align: center;
+  letter-spacing: normal;
+  font-size: 1.5vh;
+  font-weight: bold;
+  margin: 0;
+}
+
+#copy-right a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5vh;
+  font-weight: bold;
+}
+
+#copy-right i{
+  font-size: 1.5vh;
+  padding: 0;
+  text-shadow: .1vh .1vh rgb(0, 0, 0);
+  margin-left: .5vh;
+  margin-right: .5vh;
+}
+
+@media only screen and (orientation: portrait) {
+  footer {
+    width: 90%;
+  }
+}
