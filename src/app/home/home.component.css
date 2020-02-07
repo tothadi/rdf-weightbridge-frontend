@@ -136,7 +136,7 @@ td {
 }
 
 footer {
-  width: 70%;
+  width: 100%;
   max-width: 750px;
   height: 3.5vh;
   align-self: center;
@@ -175,10 +175,4 @@ footer {
   text-shadow: .1vh .1vh rgb(0, 0, 0);
   margin-left: .5vh;
   margin-right: .5vh;
-}
-
-@media only screen and (orientation: portrait) {
-  footer {
-    width: 90%;
-  }
 }
