@@ -25,7 +25,8 @@
             <tbody id="byDateWeights">
                 <tr *ngFor="let dateWeight of dateWeights">
                     <td>{{dateWeight?.date}}</td>
-                    <td>{{dateWeight?.weight}}</td>
+                    <td>{{dateWeight?.weight}}</td>                    <td>{{dateWeight?.weight}}</td>
+                    <td>{{dateWeight?.plate}}</td>
                 </tr>
             </tbody>
         </table>
@@ -42,6 +43,7 @@
                 <tr *ngFor="let todayWeight of todayWeights">
                     <td>{{todayWeight?.date}}</td>
                     <td>{{todayWeight?.weight}}</td>
+                    <td>{{todayWeight?.plate}}</td>
                 </tr>
             </tbody>
         </table>
