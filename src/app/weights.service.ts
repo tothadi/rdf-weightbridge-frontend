@@ -13,10 +13,11 @@ export class WeightsService {
   public weight$ = new Rx.BehaviorSubject(0);
   public todayWeights$ = new Rx.BehaviorSubject([]);
   public dateWeights$ = new Rx.BehaviorSubject([]);
+  public plate$ = new Rx.BehaviorSubject('');
 
   constructor() {
 
-    this.socket = io('141.98.250.60:4147', { transports: ['websocket'], upgrade: false });
+    this.socket = io('localhost:8080', { transports: ['websocket'], upgrade: false });
 
     this.socket.on('connectStatus', function (data) {
       console.log(data);
@@ -26,6 +27,10 @@ export class WeightsService {
 
     this.socket.on('weight', (data) => {
       this.weight$.next(data);
+    });
+
+    this.socket.on('plate', (data) => {
+      this.plate$.next(data);
     });
 
     this.socket.on('tableupdate', (data) => {
@@ -40,6 +45,10 @@ export class WeightsService {
 
   getWeight() {
     return this.weight$;
+  }
+
+  getPlate() {
+    return this.plate$;
   }
 
   getTodayWeights() {

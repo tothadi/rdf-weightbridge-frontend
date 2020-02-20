@@ -15,8 +15,27 @@ h1 {
   height: 10%;
   justify-content: space-around;
   background-color: green;
-  font-size: 6vh;
   margin-bottom: 2vh;
+}
+
+#weight {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vh;
+  line-height: 4vh;
+}
+
+#plate {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vh;
+  line-height: 1vh;
 }
 
 #tables {
@@ -133,6 +152,13 @@ tr {
 
 td {
   width: 33.33%;
+}
+
+.no-plate {
+  color: red;
+}
+
+.no-plate::before {
 }
 
 footer {

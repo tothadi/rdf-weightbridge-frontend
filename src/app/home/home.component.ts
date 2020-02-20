@@ -12,9 +12,12 @@ export class HomeComponent implements OnInit {
   subscription1: Subscription;
   subscription2: Subscription;
   subscription3: Subscription;
+  subscription4: Subscription;
   day: String;
   dateInput: String;
   weight: Number;
+  plate: String;
+  platePresent = false;
   showToday = true;
   todayWeights = [];
   dateWeights = [];
@@ -37,11 +40,15 @@ export class HomeComponent implements OnInit {
       this.weight = weight$;
     });
 
-    this.subscription2 = this.WeightService.getTodayWeights().subscribe(todayWeights$ => {
+    this.subscription2 = this.WeightService.getPlate().subscribe(plate$ => {
+      this.plate = plate$;
+    });
+
+    this.subscription3 = this.WeightService.getTodayWeights().subscribe(todayWeights$ => {
       this.todayWeights = todayWeights$
     });
 
-    this.subscription3 = this.WeightService.getDateWeights().subscribe(dateWeights$ => {
+    this.subscription4 = this.WeightService.getDateWeights().subscribe(dateWeights$ => {
       this.dateWeights = dateWeights$
     });
 
