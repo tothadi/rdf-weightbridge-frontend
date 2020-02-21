@@ -3,9 +3,8 @@ h1 {
   flex-direction: column;
   justify-content: center;
   margin-top: 5%;
-  font-size: 4.5vh;
+  font-size: 3vh;
   margin-bottom: 5%;
-  height: 10%;
 }
 
 #data {
@@ -39,7 +38,7 @@ h1 {
 }
 
 #tables {
-  height: 61vh;
+  height: 65vh;
   margin-bottom: 2vh;
 }
 
@@ -128,12 +127,12 @@ tbody {
   display: block;
   flex-direction: column;
   background-color: rgb(2, 29, 2);
-  height: 40vh;
+  height: 49vh;
   overflow-y: scroll;
 }
 
 #today tbody {
-  height: 46vh;
+  height: 55vh;
 }
 
 thead, tbody tr {

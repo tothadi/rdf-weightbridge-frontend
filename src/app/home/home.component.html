@@ -1,10 +1,9 @@
 <h1>RDF üzem mérleg</h1>
 <div id="data">
     <p id="weight">{{weight}} kg</p>
-    <p *ngIf="weight != 0" id="plate">{{plate}}</p>
 </div>
 <div id="tables">
-    <p id="caption">Log 2020.02.05-től. Rendszámok 2020.02.21-től.</p>
+    <p *ngIf="weight != 0" id="plate">{{plate}}</p>
     <div id="toggles">
         <a id="todayBtn" (click)="toggleToday()" [ngClass]="{'active': showToday}">Mai súlyok</a>
         <a id="byDateBtn" (click)="toggleToday()" [ngClass]="{'active': !showToday}">Dátum szerint</a>
@@ -26,7 +25,7 @@
                 <tr *ngFor="let dateWeight of dateWeights">
                     <td>{{dateWeight?.date}}</td>
                     <td>{{dateWeight?.weight}}</td>
-                    <td [ngClass]="{'no-plate': todayWeight?.plate === 'nincs rögzítve'}">{{dateWeight?.plate}}</td>
+                    <td [ngClass]="{'no-plate': dateWeight?.plate === 'nincs rögzítve'}">{{dateWeight?.plate}}</td>
                 </tr>
             </tbody>
         </table>
