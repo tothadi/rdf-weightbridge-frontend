@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PushNotificationsModule } from 'ng-push';
 
 import { AppComponent } from './app.component';
 import { WeightsService } from './weights.service';
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PushNotificationsModule
   ],
   providers: [
     WeightsService

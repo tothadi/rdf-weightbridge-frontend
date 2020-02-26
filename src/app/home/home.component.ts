@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WeightsService } from '../weights.service';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { PushNotificationsService } from 'ng-push';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,9 @@ export class HomeComponent implements OnInit {
   audioPlayed = false;
   state = 'on';
 
-  constructor(private WeightService: WeightsService, private Title: Title) { }
+  constructor(private WeightService: WeightsService, private Title: Title, private _pushNotifications: PushNotificationsService) {
+    this._pushNotifications.requestPermission();
+  }
 
   setDocTitle(newPlate: string) {
     if (newPlate.length === 6) {
@@ -37,7 +40,7 @@ export class HomeComponent implements OnInit {
           this.Title.setTitle('RDF Mérleg');
         }, 1000);
       }, 2000);
-      
+
       if (!this.audioPlayed) {
         this.audio.play();
         this.audioPlayed = true;
@@ -47,6 +50,19 @@ export class HomeComponent implements OnInit {
       this.audioPlayed = false;
     }
 
+  }
+
+  notify(plate, weight) {
+    if (plate.length === 6) {
+    let options = {
+      body: weight,
+      icon: 'assets/merleg.png'
+    }
+    this._pushNotifications.create(plate, options).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+    }
   }
 
   speaker() {
@@ -71,7 +87,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.audio.src = "/assets/horn.wav";
+    this.audio.src = "assets/horn.wav";
     this.audio.volume = 0.3;
     this.audio.load();
 
@@ -82,6 +98,7 @@ export class HomeComponent implements OnInit {
     this.subscription2 = this.WeightService.getPlate().subscribe(plate$ => {
       this.plate = plate$;
       this.setDocTitle(this.plate);
+      this.notify(this.plate, this.weight);
     });
 
     this.subscription3 = this.WeightService.getTodayWeights().subscribe(todayWeights$ => {
