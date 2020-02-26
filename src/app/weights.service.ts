@@ -23,11 +23,7 @@ export class WeightsService {
       console.log(data);
     });
 
-    this.socket.emit('join', 'connected');
-
-    //this.socket.on('stream', (data) => {
-    //  console.log(data);
-    //});
+    this.socket.emit('join', 'Client connected');
 
     this.socket.on('weight', (data) => {
       this.weight$.next(data);

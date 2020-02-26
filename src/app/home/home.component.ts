@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeightsService } from '../weights.service';
 import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +10,54 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
+  title = 'RDF Mérleg'
   subscription1: Subscription;
   subscription2: Subscription;
   subscription3: Subscription;
   subscription4: Subscription;
-  day: String;
-  dateInput: String;
-  weight: Number;
-  plate: String;
+  day: string;
+  dateInput: string;
+  weight: number;
+  plate: string;
   platePresent = false;
   showToday = true;
   todayWeights = [];
   dateWeights = [];
+  audio = new Audio();
+  audioPlayed = false;
+  state = 'on';
 
-  constructor(private WeightService: WeightsService) { }
+  constructor(private WeightService: WeightsService, private Title: Title) { }
+
+  setDocTitle(newPlate: string) {
+    if (newPlate.length === 6) {
+      setInterval(() => {
+        this.Title.setTitle(newPlate + ' a mérlegen!');
+        setTimeout(() => {
+          this.Title.setTitle('RDF Mérleg');
+        }, 1000);
+      }, 2000);
+      
+      if (!this.audioPlayed) {
+        this.audio.play();
+        this.audioPlayed = true;
+      }
+    } else {
+      this.Title.setTitle('RDF Mérleg');
+      this.audioPlayed = false;
+    }
+
+  }
+
+  speaker() {
+    if (this.state === 'on') {
+      this.state = 'off';
+      this.audio.volume = 0;
+    } else {
+      this.state = 'on';
+      this.audio.volume = 0.3;
+    }
+  }
 
   toggleToday() {
     this.showToday = !this.showToday
@@ -36,12 +71,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    this.audio.src = "/assets/horn.wav";
+    this.audio.volume = 0.3;
+    this.audio.load();
+
     this.subscription1 = this.WeightService.getWeight().subscribe(weight$ => {
       this.weight = weight$;
     });
 
     this.subscription2 = this.WeightService.getPlate().subscribe(plate$ => {
       this.plate = plate$;
+      this.setDocTitle(this.plate);
     });
 
     this.subscription3 = this.WeightService.getTodayWeights().subscribe(todayWeights$ => {

@@ -1,9 +1,10 @@
 <h1>RDF üzem mérleg</h1>
 <div id="data">
+    <img src="/assets/speaker_{{state}}.png" (click)="speaker()" alt="on">
     <p id="weight">{{weight}} kg</p>
 </div>
 <div id="tables">
-    <p *ngIf="weight != 0" id="plate">{{plate}}</p>
+    <p id="plate">{{plate}}</p>
     <div id="toggles">
         <a id="todayBtn" (click)="toggleToday()" [ngClass]="{'active': showToday}">Mai súlyok</a>
         <a id="byDateBtn" (click)="toggleToday()" [ngClass]="{'active': !showToday}">Dátum szerint</a>
@@ -19,13 +20,15 @@
                     <td>Dátum</td>
                     <td>Súly</td>
                     <td>Rendszám</td>
+                    <td>Irány</td>
                 </tr>
             </thead>
             <tbody id="byDateWeights">
                 <tr *ngFor="let dateWeight of dateWeights">
                     <td>{{dateWeight?.date}}</td>
                     <td>{{dateWeight?.weight}}</td>
-                    <td [ngClass]="{'no-plate': dateWeight?.plate === 'nincs rögzítve'}">{{dateWeight?.plate}}</td>
+                    <td [ngClass]="{'no-plate': dateWeight?.plate === 'NA'}">{{dateWeight?.plate}}</td>
+                    <td [ngClass]="{'no-plate': dateWeight?.direction === 'NA'}">{{dateWeight?.direction}}</td>
                 </tr>
             </tbody>
         </table>
@@ -37,19 +40,20 @@
                     <td>Dátum</td>
                     <td>Súly</td>
                     <td>Rendszám</td>
+                    <td>Irány</td>
                 </tr>
             </thead>
             <tbody id="todayWeights">
                 <tr *ngFor="let todayWeight of todayWeights">
                     <td>{{todayWeight?.date}}</td>
                     <td>{{todayWeight?.weight}}</td>
-                    <td [ngClass]="{'no-plate': todayWeight?.plate === 'nincs rögzítve'}">{{todayWeight?.plate}}</td>
+                    <td [ngClass]="{'no-plate': todayWeight?.plate === 'NA'}">{{todayWeight?.plate}}</td>
+                    <td [ngClass]="{'no-plate': todayWeight?.direction === 'NA'}">{{todayWeight?.direction}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-
 <footer>
     <div id="copy-right">
         <p>logic &amp; code by <a href="https://www.tothadi.hu" target="blank">tothadi</a><i
