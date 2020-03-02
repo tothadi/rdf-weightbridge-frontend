@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   audio = new Audio();
   audioPlayed = false;
   state = 'on';
+  notified = false;
 
   constructor(private WeightService: WeightsService, private Title: Title, private _pushNotifications: PushNotificationsService) {
     this._pushNotifications.requestPermission();
@@ -54,14 +55,14 @@ export class HomeComponent implements OnInit {
 
   notify(plate, weight) {
     if (plate.length === 6) {
-    let options = {
-      body: weight,
-      icon: 'assets/merleg.png'
-    }
-    this._pushNotifications.create(plate, options).subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    );
+      let options = {
+        body: weight,
+        icon: 'assets/merleg.png'
+      }
+      this._pushNotifications.create(plate, options).subscribe(
+        res => console.log(res),
+        err => console.log(err)
+      );
     }
   }
 
@@ -93,12 +94,20 @@ export class HomeComponent implements OnInit {
 
     this.subscription1 = this.WeightService.getWeight().subscribe(weight$ => {
       this.weight = weight$;
+      if (weight$ === 0) {
+        this.plate = '';
+      }
     });
 
     this.subscription2 = this.WeightService.getPlate().subscribe(plate$ => {
       this.plate = plate$;
       this.setDocTitle(this.plate);
-      this.notify(this.plate, this.weight);
+      if (this.plate.length === 6) {
+        this.notify(this.plate, this.weight);
+        this.notified = true;
+      } else {
+        this.notified = false;
+      }
     });
 
     this.subscription3 = this.WeightService.getTodayWeights().subscribe(todayWeights$ => {

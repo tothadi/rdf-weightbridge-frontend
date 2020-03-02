@@ -17,7 +17,7 @@ export class WeightsService {
 
   constructor() {
 
-    this.socket = io('141.98.250.60:4147', { transports: ['websocket'], upgrade: false });
+    this.socket = io('localhost:8080', { transports: ['websocket'], upgrade: false });
 
     this.socket.on('connectStatus', function (data) {
       console.log(data);
